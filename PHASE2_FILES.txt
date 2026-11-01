@@ -1,0 +1,51 @@
+DataLensAI — Phase 2 Model Training: File Changes
+===================================================
+
+Extract zip from your DataLensAI project root:
+  cd /path/to/DataLensAI
+  unzip -o datalensai_phase2_fixes.zip
+
+Files included (4 total — only changed/created files):
+
+1. backend/app/services/ai_query_engine.py  [EDITED]
+   Location: backend/app/services/ai_query_engine.py
+   Changes:
+   - Added ROUND(…, 2) to AVG/SUM/percentage few-shot SQL patterns
+   - Added 4 new few-shot examples (19 total):
+     * Compound status (Late Punch In; Early Punch Out)
+     * Top-N with aggregation (top 5 depositors)
+     * Filtered count (deposits > 100000)
+     * Group-by with totals (deposits vs withdrawals)
+   - Added Rule 4 LIMIT N enforcement for "top N" queries
+   - Added _sanitise_sql() cap: LIMIT > 500 → 500
+
+2. backend/app/services/file_processor.py  [EDITED]
+   Location: backend/app/services/file_processor.py
+   Changes:
+   - Added DateFormatResult class with format_type, mixed, invalid_count
+   - Added detect_date_format() — classifies ISO, DD/MM, MM/DD,
+     named-month, ambiguous, mixed, and invalid dates
+   - Enhanced _detect_dayfirst() to wrap detect_date_format()
+   - Enhanced _coerce_types() with detailed date format logging
+
+3. backend/scripts/eval_realdata.py  [CREATED]
+   Location: backend/scripts/eval_realdata.py
+   Purpose: Real-data evaluation harness (30 test cases)
+   - 15 attendance tests + 15 transaction tests
+   - Ground-truth from DuckDB (not hardcoded)
+   - Supports --attendance, --transactions, --model flags
+   Usage:
+     cd backend
+     python3 -m scripts.eval_realdata \
+       --attendance /path/to/attendance.csv \
+       --transactions /path/to/transactions.csv \
+       --model datalens-sql
+
+4. backend/scripts/test_date_detection.py  [CREATED]
+   Location: backend/scripts/test_date_detection.py
+   Purpose: Date format detection tests (25 test cases)
+   - ISO, DD/MM, MM/DD, ambiguous, named-month, mixed, invalid
+   - Backward compatibility tests for _detect_dayfirst()
+   Usage:
+     cd backend
+     python3 -m scripts.test_date_detection

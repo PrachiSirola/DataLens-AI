@@ -1,0 +1,267 @@
+{
+  "model": "datalens-sql",
+  "overall_accuracy_pct": 100.0,
+  "total_passed": 43,
+  "total_tests": 43,
+  "suites": {
+    "employees": {
+      "table": "employees",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "accuracy_pct": 100.0,
+      "avg_time_s": 1.3,
+      "results": [
+        {
+          "test": "count_total",
+          "status": "PASS",
+          "time": 8.4678053855896
+        },
+        {
+          "test": "count_groupby",
+          "status": "PASS",
+          "time": 0.5633316040039062
+        },
+        {
+          "test": "average",
+          "status": "PASS",
+          "time": 0.5414423942565918
+        },
+        {
+          "test": "sum",
+          "status": "PASS",
+          "time": 0.3564949035644531
+        },
+        {
+          "test": "max",
+          "status": "PASS",
+          "time": 0.40030717849731445
+        },
+        {
+          "test": "min",
+          "status": "PASS",
+          "time": 0.38518238067626953
+        },
+        {
+          "test": "top_n",
+          "status": "PASS",
+          "time": 0.3313288688659668
+        },
+        {
+          "test": "distinct",
+          "status": "PASS",
+          "time": 0.4478135108947754
+        },
+        {
+          "test": "groupby_agg",
+          "status": "PASS",
+          "time": 0.6284096240997314
+        },
+        {
+          "test": "describe",
+          "status": "PASS",
+          "time": 0.5602078437805176
+        }
+      ]
+    },
+    "inventory": {
+      "table": "product_inventory",
+      "total": 11,
+      "passed": 11,
+      "failed": 0,
+      "errors": 0,
+      "accuracy_pct": 100.0,
+      "avg_time_s": 0.7,
+      "results": [
+        {
+          "test": "count_total",
+          "status": "PASS",
+          "time": 1.148918628692627
+        },
+        {
+          "test": "count_groupby",
+          "status": "PASS",
+          "time": 0.5498092174530029
+        },
+        {
+          "test": "average",
+          "status": "PASS",
+          "time": 0.5306003093719482
+        },
+        {
+          "test": "sum",
+          "status": "PASS",
+          "time": 0.46857476234436035
+        },
+        {
+          "test": "max",
+          "status": "PASS",
+          "time": 0.4183781147003174
+        },
+        {
+          "test": "min",
+          "status": "PASS",
+          "time": 0.38588976860046387
+        },
+        {
+          "test": "top_n",
+          "status": "PASS",
+          "time": 0.37206578254699707
+        },
+        {
+          "test": "distinct",
+          "status": "PASS",
+          "time": 0.4856090545654297
+        },
+        {
+          "test": "name_search",
+          "status": "PASS",
+          "time": 0.550438404083252
+        },
+        {
+          "test": "groupby_agg",
+          "status": "PASS",
+          "time": 0.8032159805297852
+        },
+        {
+          "test": "describe",
+          "status": "PASS",
+          "time": 1.891357421875
+        }
+      ]
+    },
+    "students": {
+      "table": "student_grades",
+      "total": 11,
+      "passed": 11,
+      "failed": 0,
+      "errors": 0,
+      "accuracy_pct": 100.0,
+      "avg_time_s": 0.7,
+      "results": [
+        {
+          "test": "count_total",
+          "status": "PASS",
+          "time": 1.1581008434295654
+        },
+        {
+          "test": "count_groupby",
+          "status": "PASS",
+          "time": 0.565697193145752
+        },
+        {
+          "test": "average",
+          "status": "PASS",
+          "time": 0.5473306179046631
+        },
+        {
+          "test": "sum",
+          "status": "PASS",
+          "time": 0.4965641498565674
+        },
+        {
+          "test": "max",
+          "status": "PASS",
+          "time": 0.44301629066467285
+        },
+        {
+          "test": "min",
+          "status": "PASS",
+          "time": 0.40903425216674805
+        },
+        {
+          "test": "top_n",
+          "status": "PASS",
+          "time": 0.3933870792388916
+        },
+        {
+          "test": "distinct",
+          "status": "PASS",
+          "time": 0.5085861682891846
+        },
+        {
+          "test": "name_search",
+          "status": "PASS",
+          "time": 0.5668230056762695
+        },
+        {
+          "test": "groupby_agg",
+          "status": "PASS",
+          "time": 0.718411922454834
+        },
+        {
+          "test": "describe",
+          "status": "PASS",
+          "time": 2.2919600009918213
+        }
+      ]
+    },
+    "weather": {
+      "table": "weather_readings",
+      "total": 11,
+      "passed": 11,
+      "failed": 0,
+      "errors": 0,
+      "accuracy_pct": 100.0,
+      "avg_time_s": 0.6,
+      "results": [
+        {
+          "test": "count_total",
+          "status": "PASS",
+          "time": 1.1677467823028564
+        },
+        {
+          "test": "count_groupby",
+          "status": "PASS",
+          "time": 0.6744251251220703
+        },
+        {
+          "test": "average",
+          "status": "PASS",
+          "time": 0.5525646209716797
+        },
+        {
+          "test": "sum",
+          "status": "PASS",
+          "time": 0.5611708164215088
+        },
+        {
+          "test": "max",
+          "status": "PASS",
+          "time": 0.4500586986541748
+        },
+        {
+          "test": "min",
+          "status": "PASS",
+          "time": 0.44982290267944336
+        },
+        {
+          "test": "top_n",
+          "status": "PASS",
+          "time": 0.4075806140899658
+        },
+        {
+          "test": "distinct",
+          "status": "PASS",
+          "time": 0.5100853443145752
+        },
+        {
+          "test": "name_search",
+          "status": "PASS",
+          "time": 0.5147695541381836
+        },
+        {
+          "test": "groupby_agg",
+          "status": "PASS",
+          "time": 0.852855920791626
+        },
+        {
+          "test": "describe",
+          "status": "PASS",
+          "time": 0.938753604888916
+        }
+      ]
+    }
+  }
+}

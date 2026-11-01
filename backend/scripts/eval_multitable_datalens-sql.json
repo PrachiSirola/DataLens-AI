@@ -1,0 +1,8 @@
+{
+  "model": "datalens-sql",
+  "individual_pass": 15,
+  "multi_pass": 15,
+  "correct_table_selection": 15,
+  "total": 15,
+  "regressions": 0
+}

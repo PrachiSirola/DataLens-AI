@@ -1,0 +1,47 @@
+# DataLensAI Custom SQL Model
+# Built on qwen2.5:7b with parameters tuned for deterministic SQL generation.
+#
+# The SYSTEM prompt here sets fallback defaults — the application overrides it
+# per-query with schema context and few-shot examples (via the Ollama /api/chat
+# system message).  The PARAMETER settings always apply and are the main value
+# of this Modelfile.
+#
+# Build:   ollama create datalens-sql -f Modelfile
+# Verify:  ollama run datalens-sql "SELECT 1"
+# Delete:  ollama rm datalens-sql
+
+FROM qwen2.5:7b
+
+# ── Inference parameters ──────────────────────────────────────────────
+# Temperature 0 → deterministic output (same question = same SQL every time)
+PARAMETER temperature 0
+
+# Narrow top-p to reduce randomness further
+PARAMETER top_p 0.9
+
+# top-k limits the token pool per step — lower = more predictable SQL
+PARAMETER top_k 40
+
+# Penalise repetition (prevents infinite FROM/JOIN loops)
+PARAMETER repeat_penalty 1.1
+PARAMETER repeat_last_n 64
+
+# Context window — 4096 is plenty for schema + question + SQL output;
+# keeping it low saves ~1 GB RAM vs the default 32k on a 16 GB laptop
+PARAMETER num_ctx 4096
+
+# Stop generating after the SQL is complete (prevents runaway commentary)
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "```"
+PARAMETER stop ";"
+
+# ── Default system prompt (overridden per-query by the app) ───────────
+SYSTEM """You are a DuckDB SQL expert. Given a user question and a database schema, output ONLY a single valid DuckDB SQL SELECT query. No explanations, no markdown, no commentary — just the raw SQL.
+
+Rules:
+1. Always double-quote table and column names: SELECT "col" FROM "table"
+2. Use DuckDB date functions: strptime, date_part, date_trunc, CAST AS DATE
+3. Use LOWER() for case-insensitive string matching
+4. Add LIMIT 500 unless the query is an aggregation or already has a LIMIT
+5. For name searches: WHERE LOWER("name") LIKE LOWER('%value%')
+6. Never use UPDATE, DELETE, INSERT, DROP, or any DDL statement"""

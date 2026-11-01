@@ -1,0 +1,116 @@
+{
+  "model": "datalens-sql",
+  "total": 14,
+  "passed": 14,
+  "failed": 0,
+  "errors": 0,
+  "accuracy_pct": 100.0,
+  "per_table": {
+    "6ae18abe77b5b2c3f3d67546": {
+      "passed": 14,
+      "total": 14,
+      "pct": 100.0
+    }
+  },
+  "avg_time_s": 1.0,
+  "results": [
+    {
+      "test": "6ae18abe77_count_total",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 1.5755195617675781,
+      "sql": "SELECT COUNT(*) AS total_count FROM \"6ae18abe77b5b2c3f3d67546\""
+    },
+    {
+      "test": "6ae18abe77_count_groupby",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 0.9860529899597168,
+      "sql": "SELECT \"transaction_id\", COUNT(*) AS row_count FROM \"6ae18abe77b5b2c3f3d67546\" GROUP BY \"transaction_id\" LIMIT 500"
+    },
+    {
+      "test": "6ae18abe77_amount_avg",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 0.901151180267334,
+      "sql": "SELECT ROUND(AVG(\"amount\"), 2) AS average_amount FROM \"6ae18abe77b5b2c3f3d67546\" LIMIT 500"
+    },
+    {
+      "test": "6ae18abe77_amount_sum",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 0.8883967399597168,
+      "sql": "SELECT ROUND(SUM(\"amount\"), 2) AS total_amount FROM \"6ae18abe77b5b2c3f3d67546\" LIMIT 500"
+    },
+    {
+      "test": "6ae18abe77_amount_max",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 0.7811288833618164,
+      "sql": "SELECT MAX(\"amount\") AS max_amount FROM \"6ae18abe77b5b2c3f3d67546\" LIMIT 500"
+    },
+    {
+      "test": "6ae18abe77_amount_min",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 0.7821650505065918,
+      "sql": "SELECT MIN(\"amount\") AS min_amount FROM \"6ae18abe77b5b2c3f3d67546\" LIMIT 500"
+    },
+    {
+      "test": "6ae18abe77_top5",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 0.749706506729126,
+      "sql": "SELECT * FROM \"6ae18abe77b5b2c3f3d67546\" ORDER BY \"amount\" DESC LIMIT 5"
+    },
+    {
+      "test": "6ae18abe77_distinct",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 0.8699800968170166,
+      "sql": "SELECT DISTINCT \"transaction_id\" FROM \"6ae18abe77b5b2c3f3d67546\" ORDER BY \"transaction_id\" LIMIT 500"
+    },
+    {
+      "test": "6ae18abe77_search",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 0.9330291748046875,
+      "sql": "SELECT * FROM \"6ae18abe77b5b2c3f3d67546\" WHERE LOWER(\"person_name\") = 'harsh pillai' LIMIT 500"
+    },
+    {
+      "test": "6ae18abe77_groupby_avg",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 1.1044468879699707,
+      "sql": "SELECT \"transaction_id\", ROUND(AVG(\"amount\"), 2) AS avg_amount FROM \"6ae18abe77b5b2c3f3d67546\" GROUP BY \"transaction_id\" LIMIT 500"
+    },
+    {
+      "test": "6ae18abe77_cat_filter",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 0.95664381980896,
+      "sql": "SELECT COUNT(*) AS deposit_count FROM \"6ae18abe77b5b2c3f3d67546\" WHERE LOWER(\"transaction_type\") = 'deposit' LIMIT 500"
+    },
+    {
+      "test": "6ae18abe77_percentage",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 1.376171350479126,
+      "sql": "SELECT ROUND(COUNT(CASE WHEN LOWER(\"transaction_type\") = 'deposit' THEN 1 END) * 100.0 / COUNT(*), 2) AS percentage FROM \"6ae18abe77b5b2c3f3d67546\" LIMIT 500"
+    },
+    {
+      "test": "6ae18abe77_sum_by_cat",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 1.2061285972595215,
+      "sql": "SELECT \"transaction_type\", ROUND(SUM(\"amount\"), 2) AS total_amount FROM \"6ae18abe77b5b2c3f3d67546\" GROUP BY \"transaction_type\" ORDER BY total_amount DESC LIMIT 500"
+    },
+    {
+      "test": "6ae18abe77_columns",
+      "table": "6ae18abe77b5b2c3f3d67546",
+      "status": "PASS",
+      "time": 1.0209851264953613,
+      "sql": "SELECT \"transaction_id\", \"date\", \"person_name\", \"transaction_type\", \"amount\" FROM \"6ae18abe77b5b2c3f3d67546\" LIMIT 500"
+    }
+  ]
+}

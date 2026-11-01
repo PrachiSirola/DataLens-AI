@@ -1,0 +1,193 @@
+{
+  "model": "qwen2.5:7b",
+  "total": 30,
+  "passed": 30,
+  "failed": 0,
+  "errors": 0,
+  "accuracy_pct": 100.0,
+  "attendance_pct": 100.0,
+  "transactions_pct": 100.0,
+  "avg_time_s": 0.8,
+  "results": [
+    {
+      "test": "att_count_total",
+      "status": "PASS",
+      "time": 0.505718469619751,
+      "sql": "SELECT COUNT(*) AS total_count FROM \"attendance_1000_employees_datewise\""
+    },
+    {
+      "test": "att_distinct_employees",
+      "status": "PASS",
+      "time": 0.73801589012146,
+      "sql": "SELECT COUNT(DISTINCT \"employee_id\") AS unique_employees FROM \"attendance_1000_employees_datewise\" LIMIT 500"
+    },
+    {
+      "test": "att_distinct_dates",
+      "status": "PASS",
+      "time": 0.5824079513549805,
+      "sql": "SELECT COUNT(DISTINCT \"date\") AS unique_dates FROM \"attendance_1000_employees_datewise\" LIMIT 500"
+    },
+    {
+      "test": "att_absent_total",
+      "status": "PASS",
+      "time": 0.7820417881011963,
+      "sql": "SELECT COUNT(*) AS absent_count FROM \"attendance_1000_employees_datewise\" WHERE LOWER(\"attendance_status\") = 'absent' LIMIT 500"
+    },
+    {
+      "test": "att_absent_date",
+      "status": "PASS",
+      "time": 1.107224464416504,
+      "sql": "SELECT COUNT(*) AS absent_count FROM \"attendance_1000_employees_datewise\" WHERE LOWER(\"attendance_status\") = 'absent' AND \"date\" = '2026-08-03' LIMIT 500"
+    },
+    {
+      "test": "att_status_groupby",
+      "status": "PASS",
+      "time": 0.7998058795928955,
+      "sql": "SELECT \"attendance_status\", COUNT(*) AS count FROM \"attendance_1000_employees_datewise\" GROUP BY \"attendance_status\" ORDER BY count DESC LIMIT 500"
+    },
+    {
+      "test": "att_present_pct",
+      "status": "PASS",
+      "time": 1.152433156967163,
+      "sql": "SELECT ROUND(COUNT(CASE WHEN LOWER(\"attendance_status\") = 'present' THEN 1 END) * 100.0 / COUNT(*), 2) AS percentage FROM \"attendance_1000_employees_datewise\" LIMIT 500"
+    },
+    {
+      "test": "att_top5_absent",
+      "status": "PASS",
+      "time": 1.0169978141784668,
+      "sql": "SELECT \"employee_name\", COUNT(*) AS absence_count FROM \"attendance_1000_employees_datewise\" WHERE LOWER(\"attendance_status\") = 'absent' GROUP BY \"employee_name\" ORDER BY absence_count DESC LIMIT 5"
+    },
+    {
+      "test": "att_late_count",
+      "status": "PASS",
+      "time": 0.7379937171936035,
+      "sql": "SELECT COUNT(*) AS count FROM \"attendance_1000_employees_datewise\" WHERE LOWER(\"attendance_status\") LIKE '%late punch in%' LIMIT 500"
+    },
+    {
+      "test": "att_date_range",
+      "status": "PASS",
+      "time": 1.4463858604431152,
+      "sql": "SELECT COUNT(*) AS absence_count FROM \"attendance_1000_employees_datewise\" WHERE LOWER(\"attendance_status\") = 'absent' AND CAST(\"date\" AS DATE) BETWEEN '2026-08-03' AND '2026-08-09' LIMIT 500"
+    },
+    {
+      "test": "att_name_search",
+      "status": "PASS",
+      "time": 0.7272422313690186,
+      "sql": "SELECT * FROM \"attendance_1000_employees_datewise\" WHERE LOWER(\"employee_id\") = 'emp0001' LIMIT 500"
+    },
+    {
+      "test": "att_distinct_status",
+      "status": "PASS",
+      "time": 0.6421973705291748,
+      "sql": "SELECT DISTINCT \"attendance_status\" FROM \"attendance_1000_employees_datewise\" ORDER BY \"attendance_status\" LIMIT 500"
+    },
+    {
+      "test": "att_compound_status",
+      "status": "PASS",
+      "time": 0.9593219757080078,
+      "sql": "SELECT COUNT(*) AS count FROM \"attendance_1000_employees_datewise\" WHERE \"late_punch_in\" = 'Yes' AND \"early_punch_out\" = 'Yes' LIMIT 500"
+    },
+    {
+      "test": "att_columns",
+      "status": "PASS",
+      "time": 1.2105016708374023,
+      "sql": "SELECT \"date\", \"employee_id\", \"employee_name\", \"punch_in_time\", \"punch_out_time\", \"attendance_status\", \"late_punch_in\", \"early_punch_out\" FROM \"attendance_1000_employees_datewise\" LIMIT 500"
+    },
+    {
+      "test": "att_absent_names",
+      "status": "PASS",
+      "time": 1.0736052989959717,
+      "sql": "SELECT \"employee_name\" FROM \"attendance_1000_employees_datewise\" WHERE LOWER(\"attendance_status\") = 'absent' AND \"date\" = '2026-08-03' LIMIT 500"
+    },
+    {
+      "test": "txn_count_total",
+      "status": "PASS",
+      "time": 0.3610377311706543,
+      "sql": "SELECT COUNT(*) AS transaction_count FROM \"withdrawal_deposit_large_dataset\""
+    },
+    {
+      "test": "txn_sum_amount",
+      "status": "PASS",
+      "time": 0.5692508220672607,
+      "sql": "SELECT ROUND(SUM(\"amount\"), 2) AS total_amount FROM \"withdrawal_deposit_large_dataset\" LIMIT 500"
+    },
+    {
+      "test": "txn_avg_amount",
+      "status": "PASS",
+      "time": 0.5606355667114258,
+      "sql": "SELECT ROUND(AVG(\"amount\"), 2) AS average_amount FROM \"withdrawal_deposit_large_dataset\" LIMIT 500"
+    },
+    {
+      "test": "txn_max_amount",
+      "status": "PASS",
+      "time": 0.4838738441467285,
+      "sql": "SELECT MAX(\"amount\") AS max_amount FROM \"withdrawal_deposit_large_dataset\" LIMIT 500"
+    },
+    {
+      "test": "txn_min_amount",
+      "status": "PASS",
+      "time": 0.5929486751556396,
+      "sql": "SELECT COALESCE(MIN(\"amount\"), 0) AS min_amount FROM \"withdrawal_deposit_large_dataset\" LIMIT 500"
+    },
+    {
+      "test": "txn_type_groupby",
+      "status": "PASS",
+      "time": 0.7023987770080566,
+      "sql": "SELECT \"transaction_type\", COUNT(*) AS count FROM \"withdrawal_deposit_large_dataset\" GROUP BY \"transaction_type\" ORDER BY count DESC LIMIT 500"
+    },
+    {
+      "test": "txn_sum_by_type",
+      "status": "PASS",
+      "time": 0.8291690349578857,
+      "sql": "SELECT \"transaction_type\", ROUND(SUM(\"amount\"), 2) AS total, COUNT(*) AS count FROM \"withdrawal_deposit_large_dataset\" GROUP BY \"transaction_type\" ORDER BY total DESC"
+    },
+    {
+      "test": "txn_unique_persons",
+      "status": "PASS",
+      "time": 0.5529017448425293,
+      "sql": "SELECT COUNT(DISTINCT \"person_name\") AS unique_people_count FROM \"withdrawal_deposit_large_dataset\" LIMIT 500"
+    },
+    {
+      "test": "txn_top3_depositors",
+      "status": "PASS",
+      "time": 0.9931418895721436,
+      "sql": "SELECT \"person_name\", ROUND(SUM(\"amount\"), 2) AS total FROM \"withdrawal_deposit_large_dataset\" WHERE LOWER(\"transaction_type\") = 'deposit' GROUP BY \"person_name\" ORDER BY total DESC LIMIT 3"
+    },
+    {
+      "test": "txn_date_count",
+      "status": "PASS",
+      "time": 0.8466637134552002,
+      "sql": "SELECT COUNT(*) AS transaction_count FROM \"withdrawal_deposit_large_dataset\" WHERE CAST(\"date\" AS DATE) = '2024-01-01' LIMIT 500"
+    },
+    {
+      "test": "txn_large_deposits",
+      "status": "PASS",
+      "time": 0.8457343578338623,
+      "sql": "SELECT COUNT(*) AS count FROM \"withdrawal_deposit_large_dataset\" WHERE LOWER(\"transaction_type\") = 'deposit' AND \"amount\" > 100000 LIMIT 500"
+    },
+    {
+      "test": "txn_withdrawal_pct",
+      "status": "PASS",
+      "time": 1.0751280784606934,
+      "sql": "SELECT ROUND(COUNT(CASE WHEN LOWER(\"transaction_type\") = 'withdrawal' THEN 1 END) * 100.0 / COUNT(*), 2) AS percentage FROM \"withdrawal_deposit_large_dataset\" LIMIT 500"
+    },
+    {
+      "test": "txn_top5_largest",
+      "status": "PASS",
+      "time": 0.4212665557861328,
+      "sql": "SELECT * FROM \"withdrawal_deposit_large_dataset\" ORDER BY \"amount\" DESC LIMIT 5"
+    },
+    {
+      "test": "txn_name_search",
+      "status": "PASS",
+      "time": 0.6558973789215088,
+      "sql": "SELECT * FROM \"withdrawal_deposit_large_dataset\" WHERE LOWER(\"person_name\") LIKE LOWER('%samar verma%') LIMIT 500"
+    },
+    {
+      "test": "txn_distinct_types",
+      "status": "PASS",
+      "time": 0.5382256507873535,
+      "sql": "SELECT DISTINCT \"transaction_type\" FROM \"withdrawal_deposit_large_dataset\" ORDER BY \"transaction_type\" LIMIT 500"
+    }
+  ]
+}
